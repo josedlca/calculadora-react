@@ -30,8 +30,8 @@ class ValueInput extends React.Component{
     render(){
         return(
             <form>
-                <input type = 'number' placeholder = 'Value One' value = {this.state.valOne} onChange = {this.handleChangeOne}/>
-                <input type = 'number' placeholder = 'Value Two' value = {this.state.valTwo} onChange = {this.handleChangeTwo}/>
+                <input type = 'text' placeholder = 'Value One' value = {this.state.valOne} onChange = {this.handleChangeOne}/>
+                <input type = 'text' placeholder = 'Value Two' value = {this.state.valTwo} onChange = {this.handleChangeTwo}/>
             </form>
         )
     }
@@ -42,7 +42,7 @@ class Operation extends React.Component{
         this.props.onSubmit(operator)
     }
     render(){
-        let operators = ['+', '-', '*', '/']
+        let operators = ['+', '-', 'x', '/']
         return(
             <ul>
                 {operators.map((operator) => (
@@ -62,29 +62,57 @@ class Igual extends React.Component{
             resultados : []
         }
         this.operando = this.operando.bind(this)
+        this.handleState = this.handleState.bind(this)
+    }
+
+    handleState(allResult){
+        // otra forma de hacerlo
+        // var test = this.state.resultados
+        // test.push(allResult)
+        // this.setState({
+        //     resultados: test
+        // })
+        // otra forma de hacerlo
+        this.setState(state =>{
+            const resultados = state.resultados.concat(allResult)
+            return {resultados}                    
+        })
     }
 
     operando(op){
+        var allResult
+        var valOne = parseInt(this.props.valueOne)
+        var valTwo = parseInt(this.props.valueTwo)
         switch(op){
-            case op === '+':
-                console.log(op)
-                allResult =`${parseInt(this.props.valueOne)} + ${parseInt(this.props.valueTwo)} = ${parseInt(this.props.valueOne) + parseInt(this.props.valueTwo)}`
+            case '+':
+                allResult =`${valOne} + ${valTwo} = ${valOne + valTwo}`
+                this.handleState(allResult)
+                break
+            case '-':
+                allResult =`${valOne} - ${valTwo} = ${valOne - valTwo}`
+                this.handleState(allResult)
+                break
+            case 'x':
+                allResult =`${valOne} x ${valTwo} = ${valOne * valTwo}`
+                this.handleState(allResult)
+                break
+            default:
+                allResult =`${valOne} / ${valTwo} = ${valOne / valTwo}`
+                this.handleState(allResult)
         }
-        return console.log(op)
     }
 
     render(){
+        const {resultados} = this.state
         return(
-            <div>
-                <button
-                    onClick = {() => this.operando(this.props.theOperation)}
-                >
-                    =
-                </button>
-                {/* <div>{typeof(this.props.valueOne)}</div>
-                <div>{this.props.valueTwo}</div>
-                <div>{this.props.theOperation}</div>
-                <div>{this.state.resultados}</div> */}
+            <div className = "igual-container">
+                <button className = 'igual' onClick = {() => this.operando(this.props.theOperation)}> = </button>
+                <h3>Operaciones realizadas: {resultados.length}</h3>
+                <ul>
+                    {resultados.map((res,index)=>(
+                        <li key = {index}>{res}</li>
+                    ))}
+                </ul>
             </div>
         )
     }
@@ -120,7 +148,7 @@ class Main extends React.Component{
 
     render() {
         return (
-            <React.Fragment>
+            <div className = 'container'>
                 <h1>Calculadora</h1>
                 <ValueInput 
                     valueOne = {(valOne) => this.hereIsTheValueOne('valueOneHere', valOne)}
@@ -134,7 +162,7 @@ class Main extends React.Component{
                     valueTwo = {this.state.valueTwoHere}
                     theOperation = {this.state.theOperation}
                 />
-            </React.Fragment>
+            </div>
         )
     }
 }

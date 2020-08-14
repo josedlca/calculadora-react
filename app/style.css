@@ -1,0 +1,96 @@
+#app{
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.container{
+    display: inline-flex;
+    width: 30%;
+    flex-direction: column;
+    background-color: #2D2D2A;
+    padding: 20px 15px;
+    border-radius: 10px;
+}
+
+.container h1{
+    font-family: 'Roboto', sans-serif;
+    color: #3F84e5;
+    text-align: center;
+}
+
+.container form{
+    text-align: center;
+}
+.container form input{
+    border-radius: 5px;
+    text-decoration: none;
+    outline: none;
+    width: 100px;
+    padding: 7px 10px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    border: transparent;
+    margin: 0px 5px;
+}
+
+.container ul{
+    padding: 0px;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.container ul li{
+    list-style: none;
+    margin: 0 10px;
+}
+
+.container ul li button{
+    padding: 5px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 5px;
+    outline: none;
+    border: transparent;
+    cursor: pointer;
+    background-color: #92BDA3;
+    color: #2D2D2A;
+}
+.container ul li button:hover{
+    color: white;
+    background-color: #3F84e5;
+}
+
+.igual-container{
+    text-align: center;
+}
+
+.igual{
+    padding: 5px 50px;
+    color: #2D2D2A;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 5px;
+    outline: none;
+    border: transparent;
+    cursor: pointer;
+}
+
+.igual-container h3{
+    font-family: 'Roboto', sans-serif;
+    color: #3F84e5;
+}
+.igual-container ul{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.igual-container ul li{
+    font-family: 'Roboto', sans-serif;
+    color: #3F84e5;
+    font-size: 22px;
+    font-weight: 700;
+}
